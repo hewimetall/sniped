@@ -1,0 +1,13 @@
+FROM python:3.8 AS test2
+RUN mkdir /code/
+WORKDIR /code
+COPY req.txt .
+RUN python3.8 -m venv /code/venv 
+ENV PATH="/code/venv/bin:$PATH"
+RUN pip install -r req.txt
+
+FROM python:3.8 
+RUN mkdir /code/
+WORKDIR /code
+COPY --from=test2 /code/venv /code/venv 
+CMD ["sleep","10000"]

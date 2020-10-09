@@ -1,0 +1,4 @@
+FROM busybox as test1
+RUN mkdir /code/
+WORKDIR /code
+CMD ["sleep","10000"]
